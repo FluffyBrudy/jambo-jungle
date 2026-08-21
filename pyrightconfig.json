@@ -1,0 +1,8 @@
+{
+  "typeCheckingMode": "standard",
+  "diagnosticSeverityOverrides": {
+    "reportUnannotatedClassAttribute": "none",
+    "reportUnusedExpression": "none",
+    "reportMissingTypeStubs": "warning",
+  },
+}
