@@ -1,5 +1,6 @@
 {
   "typeCheckingMode": "standard",
+  "extraPaths": ["."],
   "diagnosticSeverityOverrides": {
     "reportUnannotatedClassAttribute": "none",
     "reportUnusedExpression": "none",

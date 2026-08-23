@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "folders": [
+    {
+      "id": "f_1",
+      "name": "objects",
+      "parent": null
+    },
+    {
+      "id": "f_2",
+      "name": "tilesets",
+      "parent": null
+    },
+    {
+      "id": "f_3",
+      "name": "environment",
+      "parent": null
+    }
+  ],
+  "items": [
+    {
+      "path": "../assets/images/SpriteSheets/props/ammo.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/barrel.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/bigcrate.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/crate.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/plant.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/red_barrel.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/shelter.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/props/skullpanel.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/background_cave.png",
+      "folder": "f_1"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/cave_tileset.png",
+      "folder": "f_2"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/tileset.png",
+      "folder": "f_2"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/tile_cave_hole_1.png",
+      "folder": "f_2"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/background_color.png",
+      "folder": "f_2"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_paralax_bg2.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_paralax_bg1.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_bg_trees.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_tree1.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_tree1_bg.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_tree2.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/jungle_tree2_bg.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/clouds2.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/clouds1.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/paralax_half_bg_0.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/paralax_half_bg_2.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/paralax_half_bg_3.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/paralax_half_bg_1.png",
+      "folder": "f_3"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_0.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_1.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_2.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_3.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_4.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/cave_5.png",
+      "folder": null
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+pygame-ce==2.5.8
+pygkit==1.0.5
+-e git+ssh://git@github.com/FluffyBrudy/tilemap.git@a33903c0d268b743ce1ebad8840f5b578f8b5bcb#egg=tilemap_editor
+-e git+ssh://git@github.com/FluffyBrudy/tilemap-parser.git@909df69683359d8f196366d33efd7043c6fc6e8b#egg=tilemap_parser
