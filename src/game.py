@@ -2,13 +2,15 @@ import sys
 
 import pygame
 
+from src.world import World
+
 
 class Game:
     WIDTH = 1280
     HEIGHT = 720
     FPS = 60
     TITLE = "Pygame"
-    BG_COLOR = (30, 30, 30)
+    BG_COLOR = (135, 200, 249)
 
     def __init__(self) -> None:
         self.running = True
@@ -20,16 +22,19 @@ class Game:
         pygame.display.set_caption(self.TITLE)
         self.clock = pygame.time.Clock()
 
+        self.world = World(self)
+
     def handle_event(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
 
     def update(self, dt: float) -> None:
-        pass
+        self.world.update(dt)
 
     def render(self) -> None:
         self.screen.fill(self.BG_COLOR)
+        self.world.render()
         pygame.display.flip()
 
     def run(self) -> None:

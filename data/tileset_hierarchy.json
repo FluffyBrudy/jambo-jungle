@@ -15,6 +15,11 @@
       "id": "f_3",
       "name": "environment",
       "parent": null
+    },
+    {
+      "id": "f_4",
+      "name": "deleteable",
+      "parent": null
     }
   ],
   "items": [
@@ -55,15 +60,7 @@
       "folder": "f_1"
     },
     {
-      "path": "../assets/images/SpriteSheets/cave_tileset.png",
-      "folder": "f_2"
-    },
-    {
       "path": "../assets/images/SpriteSheets/tileset.png",
-      "folder": "f_2"
-    },
-    {
-      "path": "../assets/images/SpriteSheets/background/tile_cave_hole_1.png",
       "folder": "f_2"
     },
     {
@@ -124,26 +121,38 @@
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_0.png",
-      "folder": null
+      "folder": "f_4"
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_1.png",
-      "folder": null
+      "folder": "f_4"
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_2.png",
-      "folder": null
+      "folder": "f_4"
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_3.png",
-      "folder": null
+      "folder": "f_4"
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_4.png",
-      "folder": null
+      "folder": "f_4"
     },
     {
       "path": "../assets/images/SpriteSheets/background/cave_5.png",
+      "folder": "f_4"
+    },
+    {
+      "path": "../assets/images/SpriteSheets/cave_tileset.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/background/tile_cave_hole_1.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/player/john_static.png",
       "folder": null
     }
   ]

@@ -677,34 +677,6 @@
       ],
       "properties": {}
     },
-    "625": {
-      "tile_id": 625,
-      "shapes": [
-        {
-          "type": "polygon",
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              8,
-              0
-            ],
-            [
-              8,
-              8
-            ],
-            [
-              0,
-              8
-            ]
-          ],
-          "one_way": false
-        }
-      ],
-      "properties": {}
-    },
     "626": {
       "tile_id": 626,
       "shapes": [
@@ -2350,6 +2322,62 @@
             [
               0,
               8
+            ]
+          ],
+          "one_way": false
+        }
+      ],
+      "properties": {}
+    },
+    "625": {
+      "tile_id": 625,
+      "shapes": [
+        {
+          "type": "polygon",
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              0
+            ]
+          ],
+          "one_way": false
+        }
+      ],
+      "properties": {}
+    },
+    "353": {
+      "tile_id": 353,
+      "shapes": [
+        {
+          "type": "polygon",
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              0
             ]
           ],
           "one_way": false

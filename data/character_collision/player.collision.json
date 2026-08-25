@@ -1,0 +1,17 @@
+{
+  "name": "player",
+  "shape": {
+    "type": "rectangle",
+    "width": 12.25,
+    "height": 16.25,
+    "offset": [
+      6.000000000000028,
+      5.125
+    ]
+  },
+  "properties": {
+    "collision_layer": 1,
+    "collision_mask": 65535
+  },
+  "image_path": "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/spritesheet.png"
+}
