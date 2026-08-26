@@ -19,6 +19,8 @@ from src.settings import ROOT_PATH
 
 
 class IEntity(ABC):
+    x: float
+    y: float
     flipped: bool = False
     animation_spritesheet: SpriteAnimationSet
     animation_state: dict[str, AnimationPlayer]
@@ -77,7 +79,8 @@ class Entity(IEntity):
         if state != self.current_state:
             self.animation_state[state].reset()
             self.current_state = state
-        self.animation_state[self.current_state].update(dt * 1000)
+        curr_anim_state = self.animation_state[self.current_state]
+        curr_anim_state.update(dt * 1000)
 
     def render(self, screen: pygame.Surface, offset: tuple[float, float]):
         current_image = self.animation_state[self.current_state].get_current_image()
