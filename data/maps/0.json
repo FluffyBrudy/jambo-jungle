@@ -3,7 +3,7 @@
     "tile_size": "8;8",
     "map_size": "120;30",
     "zoom_level": 0.40000000000000013,
-    "scroll": "-358.7972961164901;-747.181539865363",
+    "scroll": "-238.7972961164901;-747.181539865363",
     "offset": "0;0",
     "render_scale": 3.0,
     "version": "1.1"
@@ -206,7 +206,10 @@
         "path": "../../assets/images/SpriteSheets/player/john_static.png",
         "type": "object",
         "tile_count": 6,
-        "firstgid": 11833
+        "firstgid": 11833,
+        "properties": {
+          "name": "player"
+        }
       },
       {
         "path": "../../assets/images/SpriteSheets/enemy/grunt.png",
@@ -20344,9 +20347,7 @@
             "ttype": 32,
             "tileset_type": "object",
             "variant": 0,
-            "properties": {
-              "type": "player"
-            }
+            "properties": {}
           },
           "2": {
             "area": {
