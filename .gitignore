@@ -77,5 +77,11 @@ coverage/
 
 *.local.txt
 
+# editor state
+recents.json
+data/recents.json
+
 # temp notes (gitignored, safe to delete)
 local-files/
+
+sandbox/

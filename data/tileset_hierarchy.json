@@ -154,6 +154,14 @@
     {
       "path": "../assets/images/SpriteSheets/player/john_static.png",
       "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/enemy/grunt.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/enemy/grunt_portal.png",
+      "folder": null
     }
   ]
 }

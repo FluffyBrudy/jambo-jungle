@@ -23,5 +23,7 @@
             "warning",
             "info"
         ]
-    }
+    },
+    "aliases_path": "aliases",
+    "alias_scopes": {}
 }

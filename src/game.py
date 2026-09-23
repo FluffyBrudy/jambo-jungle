@@ -23,6 +23,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.world = World(self)
+        self.world.load_level("0")
 
     def handle_event(self) -> None:
         for event in pygame.event.get():

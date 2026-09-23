@@ -4,6 +4,7 @@ import pygame
 from pygame.surface import Surface
 from tilemap_parser import (
     CollisionRunner,
+    ICollidable,
     ICollidableSprite,
     PhysicsWorld,
     TileLayerRenderer,
@@ -36,14 +37,14 @@ class WorldLoader:
             if layer.name in layer_ids:
                 layer.visible = False
 
-    def is_ground_ahead(self, sprite: IGroundCheckSprite):
+    def is_ground_ahead(self, sprite: ICollidable, is_left: bool):
         """
         A common protocal has to be followed, by default character should face right
         or at least Flipped status when off should hint something is facing right.
         Note: This api doesnt account for ceiling
         """
         left, _, right, bottom = get_shape_aabb(sprite.x, sprite.y, sprite.collision_shape)
-        probe_x, probe_y = left - 1 if sprite.flipped else right + 1, bottom + 1
+        probe_x, probe_y = left - 1 if is_left else right + 1, bottom + 1
         tile_x, tile_y = self.collision_runner.get_tile_at(probe_x, probe_y)
         tile_id = self.physics_world.tile_map.get((tile_x, tile_y))
         return tile_id is not None and self.physics_world.has_collision_gid(tile_id)

@@ -1,1 +1,22 @@
-["/Users/upstem/Desktop/jambo-jungle/data/maps/0.json", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/spritesheet.png", "/Users/upstem/Desktop/jambo-jungle/data/animations/player.anim.json", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_landing.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_crouch.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_defeated.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_hithurt.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_run_shoot.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_jump.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_run.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_idle.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets", "/Users/upstem/Desktop/jambo-jungle/assets/images", "/Users/upstem/Desktop/jambo-jungle/assets", "/Users/upstem/Desktop/jambo-jungle/john_crouch-sheet.png", "/Users/upstem/Desktop/jambo-jungle/assets/john_crouch-sheet.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_static.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/tileset.png", "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/cave_5.png"]
+[
+  "/Users/upstem/Desktop/jambo-jungle/data/maps/0.json",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/background_color.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_portal.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_idle.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images",
+  "/Users/upstem/Desktop/jambo-jungle/assets",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/jungle_paralax_bg2.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/jungle_paralax_bg1.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_death.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_shoot.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_run.png",
+  "/Users/upstem/Desktop/jambo-jungle/data/animations/player.anim.json",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/spritesheet.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_stand_shooting.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/player/john_landing.png"
+]

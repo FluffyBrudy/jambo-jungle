@@ -12,9 +12,10 @@ from tilemap_parser import (
     ICollidableSprite,
     RectangleShape,
     SpriteAnimationSet,
-    load_character_collision,
+    get_shape_aabb,
 )
 
+from src.core.asset_cache import get_animation_set, get_character_collision
 from src.settings import ROOT_PATH
 
 
@@ -23,6 +24,7 @@ class IEntity(ABC):
     y: float
     flipped: bool = False
     animation_spritesheet: SpriteAnimationSet
+    animation_ms: float = 1000
     animation_state: dict[str, AnimationPlayer]
     current_state: str = ""
     blend_flag: int = 0
@@ -35,6 +37,7 @@ class IEntity(ABC):
 class Entity(IEntity):
     render_scale = 1.0
     collision_runner: CollisionRunner = None  # pyright: ignore
+    base_animation_ms: float = 1000.0
 
     def __new__(cls, *args, **kwargs) -> Self:
         if cls.collision_runner is None:
@@ -47,7 +50,7 @@ class Entity(IEntity):
         if not collision_path.exists():
             raise FileNotFoundError("collision path not found")
 
-        collision = load_character_collision(collision_path, render_scale=self.render_scale)
+        collision = get_character_collision(collision_path, render_scale=self.__class__.render_scale)
         if collision is None:
             raise ValueError("collision shape not found")
         if isinstance(collision.shape, (CircleShape, RectangleShape, CapsuleShape)):
@@ -58,9 +61,10 @@ class Entity(IEntity):
         self.collision_mask = collision.collision_mask
         self.collision_layer = collision.collision_layer
 
-        self.animation_spritesheet = SpriteAnimationSet.load(animation_path, render_scale=Entity.render_scale)
+        self.animation_spritesheet = get_animation_set(animation_path, render_scale=self.__class__.render_scale)
         keys = self.animation_spritesheet.library.animations.keys()
         self.animation_state = {key: AnimationPlayer(self.animation_spritesheet, key) for key in keys}
+        self.shape_aabb = get_shape_aabb(self.x, self.y, self.collision_shape)
 
     @abstractmethod
     def get_state(self):
@@ -73,14 +77,19 @@ class Entity(IEntity):
     def update(self, dt: float):
         self.update_physics(dt)
         self.update_animation(dt)
+        self.shape_aabb = get_shape_aabb(self.x, self.y, self.collision_shape)
 
     def update_animation(self, dt: float):
         state = self.get_state()
         if state != self.current_state:
             self.animation_state[state].reset()
             self.current_state = state
+            anim_clip = self.animation_spritesheet.library.animations.get(state)
+            if anim_clip is not None:
+                fps = float(getattr(anim_clip, "fps", 60.0))
+                self.animation_ms = (fps / 60.0) * self.base_animation_ms
         curr_anim_state = self.animation_state[self.current_state]
-        curr_anim_state.update(dt * 1000)
+        curr_anim_state.update(dt * self.animation_ms)
 
     def render(self, screen: pygame.Surface, offset: tuple[float, float]):
         current_image = self.animation_state[self.current_state].get_current_image()
