@@ -27,10 +27,16 @@ class SharedData:
         self.character_collisions = {}
         self.tileset_collision = {}
 
+        self.render_scale = 1.0
+
     def preload(self, mapdata: TilemapData):
+        self.render_scale = mapdata.render_scale
         self.state_animations = {
             "player": SpriteAnimationSet.load(
                 PROJECT_PATH / "data/animations/player.anim.json", render_scale=mapdata.render_scale
+            ),
+            "weapon_bullets": SpriteAnimationSet.load(
+                PROJECT_PATH / "data/animations/weapn_bullets.anim.json", render_scale=mapdata.render_scale
             ),
         }
         self.character_collisions = {
@@ -38,6 +44,13 @@ class SharedData:
                 CharacterCollision,
                 get_cached_character_collision(
                     PROJECT_PATH / "data/character_collision/player.collision.json", render_scale=mapdata.render_scale
+                ),
+            ),
+            "weapon_bullet": cast(
+                CharacterCollision,
+                get_cached_character_collision(
+                    PROJECT_PATH / "data/character_collision/weapn_bullets.collision.json",
+                    render_scale=mapdata.render_scale,
                 ),
             ),
         }

@@ -1,0 +1,16 @@
+{
+  "name": "weapn_bullets",
+  "shape": {
+    "type": "circle",
+    "radius": 2.2399999999999998,
+    "offset": [
+      3.3600000000000034,
+      3.644444444444445
+    ]
+  },
+  "properties": {
+    "collision_layer": 1,
+    "collision_mask": 65535
+  },
+  "image_path": "../assets/images/SpriteSheets/projectiles/weapn_bullets.png"
+}

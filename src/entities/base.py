@@ -50,11 +50,8 @@ class Character:
         raise NotImplementedError
 
     def flip_character_shape(self):
-        image: Surface = self.animations[self.current_state].get_current_image()  # pyright: ignore
-        if self.flipped:
-            self.collision_shape = flip_character_shape(self.collision_shape, image.size)
-        else:
-            self.collision_shape = self.collision_shape
+        image = self.animations[self.current_state].get_current_image()
+        self.collision_shape = flip_character_shape(self.collision_shape, image.size)
 
     def update(self, dt: float):
         self.sync_state()

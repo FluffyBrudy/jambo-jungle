@@ -41,7 +41,6 @@ class Game:
     def run(self) -> None:
         while self.running:
             dt = self.clock.tick(self.FPS) / 1000.0
-
             self.handle_event()
 
             self.update(dt)
