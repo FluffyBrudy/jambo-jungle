@@ -1,0 +1,17 @@
+{
+  "name": "grunt",
+  "shape": {
+    "type": "rectangle",
+    "width": 14.03654023324934,
+    "height": 17.625,
+    "offset": [
+      4.853333333333352,
+      3.9169915071733445
+    ]
+  },
+  "properties": {
+    "collision_layer": 4,
+    "collision_mask": 3
+  },
+  "image_path": "../assets/images/SpriteSheets/enemy/spritesheet.png"
+}

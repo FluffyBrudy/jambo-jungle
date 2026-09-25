@@ -1,6 +1,8 @@
-from typing import cast
+from math import sin
+from typing import Unpack, cast
 
 import pygame
+from pygame.math import lerp
 from pygame.surface import Surface
 from tilemap_parser import (
     AnimationPlayer,
@@ -10,6 +12,8 @@ from tilemap_parser import (
     SpriteShape,
     flip_character_shape,
 )
+
+from src.fx import apply_flicker
 
 
 class Character:
@@ -27,6 +31,7 @@ class Character:
         animaion_set: SpriteAnimationSet,
         collision_data: CharacterCollision,
         initial_state: str,
+        label: str,
     ) -> None:
         self.animations = {k: AnimationPlayer(animaion_set, k) for k in animaion_set.library.animations}
         self.collision_shape = cast(SpriteShape, collision_data.shape)
@@ -36,9 +41,15 @@ class Character:
         self.flipped = False
         self.vx = 0
         self.vy = 0
-        self.x = 0
-        self.y = 0
+        self.x = x
+        self.y = y
         self.on_ground = False
+
+        self.fps = {k: (v.fps / 60) for k, v in animaion_set.library.animations.items()}
+        self.label = label
+        self.alpha = 255
+
+        self.flicker = False
 
     def sync_state(self):
         new_state = self.get_state()
@@ -50,16 +61,19 @@ class Character:
         raise NotImplementedError
 
     def flip_character_shape(self):
-        image = self.animations[self.current_state].get_current_image()
+        image: Surface = self.animations[self.current_state].get_current_image()  # pyright: ignore
         self.collision_shape = flip_character_shape(self.collision_shape, image.size)
 
     def update(self, dt: float):
         self.sync_state()
-        self.animations[self.current_state].update(dt * 1000)
+        scale = self.fps[self.current_state]
+        self.animations[self.current_state].update(dt * 1000 * scale)
 
     def render(self, surface: Surface, offset: tuple[float, float]):
         image: Surface = self.animations[self.current_state].get_current_image()  # pyright:ignore
 
         if self.flipped:
             image = pygame.transform.flip(image, True, False)
-        surface.blit(image, (self.x, self.y))
+        if self.flicker:
+            image = apply_flicker(image)
+        surface.blit(image, (self.x - offset[0], self.y - offset[1]))

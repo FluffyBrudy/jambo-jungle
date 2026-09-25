@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import cast
 
 from pygame import Surface
@@ -35,6 +36,9 @@ class SharedData:
             "player": SpriteAnimationSet.load(
                 PROJECT_PATH / "data/animations/player.anim.json", render_scale=mapdata.render_scale
             ),
+            "grunt": SpriteAnimationSet.load(
+                PROJECT_PATH / "data/animations/grunt.anim.json", render_scale=mapdata.render_scale
+            ),
             "weapon_bullets": SpriteAnimationSet.load(
                 PROJECT_PATH / "data/animations/weapn_bullets.anim.json", render_scale=mapdata.render_scale
             ),
@@ -44,6 +48,12 @@ class SharedData:
                 CharacterCollision,
                 get_cached_character_collision(
                     PROJECT_PATH / "data/character_collision/player.collision.json", render_scale=mapdata.render_scale
+                ),
+            ),
+            "grunt": cast(
+                CharacterCollision,
+                get_cached_character_collision(
+                    PROJECT_PATH / "data/character_collision/grunt.collision.json", render_scale=mapdata.render_scale
                 ),
             ),
             "weapon_bullet": cast(
@@ -77,6 +87,7 @@ class LevelData:
 
         self.objects_before_tiles: list[tuple[Surface, float, float]] = []
         self.objects_after_tiles: list[tuple[Surface, float, float]] = []
+        self.enemies: dict[str, list[tuple[float, float]]] = defaultdict(list)
         self.player_pos = (0, 0)
 
     def preload(self, mapdata: TilemapData):
@@ -85,8 +96,11 @@ class LevelData:
         entites = mapdata.get_object_surfaces("entities", scaled=True)
         for _, x, y, oid in entites:
             props = mapdata.parsed.tilesets[layer.objects[oid].ttype].properties
-            if props and props.get("name") == "player":
-                self.player_pos = (x, y)
+            if props:
+                if props.get("name") == "player":
+                    self.player_pos = (x, y)
+                elif props.get("name") == "grunt":
+                    self.enemies["grunt"].append((x, y))
 
         self.objects_before_tiles = [
             (surface, x, y) for surface, x, y, _ in mapdata.get_object_surfaces("objects_bg", scaled=True)
