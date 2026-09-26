@@ -1,0 +1,17 @@
+{
+  "name": "turret",
+  "shape": {
+    "type": "rectangle",
+    "width": 16.64,
+    "height": 17.44,
+    "offset": [
+      0,
+      0.08
+    ]
+  },
+  "properties": {
+    "collision_layer": 1,
+    "collision_mask": 65535
+  },
+  "image_path": "../assets/images/SpriteSheets/enemy/turret_spritesheet.png"
+}

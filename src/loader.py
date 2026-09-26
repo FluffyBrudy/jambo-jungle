@@ -2,6 +2,8 @@ from collections import defaultdict
 from typing import cast
 
 from pygame import Surface
+from pygame.rect import Rect
+from pygkit.audio import SoundManager
 from tilemap_parser import (
     CharacterCollision,
     ParsedLayer,
@@ -39,6 +41,9 @@ class SharedData:
             "grunt": SpriteAnimationSet.load(
                 PROJECT_PATH / "data/animations/grunt.anim.json", render_scale=mapdata.render_scale
             ),
+            "turret": SpriteAnimationSet.load(
+                PROJECT_PATH / "data/animations/turret.anim.json", render_scale=mapdata.render_scale
+            ),
             "weapon_bullets": SpriteAnimationSet.load(
                 PROJECT_PATH / "data/animations/weapn_bullets.anim.json", render_scale=mapdata.render_scale
             ),
@@ -56,6 +61,12 @@ class SharedData:
                     PROJECT_PATH / "data/character_collision/grunt.collision.json", render_scale=mapdata.render_scale
                 ),
             ),
+            "turret": cast(
+                CharacterCollision,
+                get_cached_character_collision(
+                    PROJECT_PATH / "data/character_collision/turret.collision.json", render_scale=mapdata.render_scale
+                ),
+            ),
             "weapon_bullet": cast(
                 CharacterCollision,
                 get_cached_character_collision(
@@ -69,6 +80,16 @@ class SharedData:
                 TilesetCollision, get_cached_tileset_collision(PROJECT_PATH / "data/collision/tileset.collision.json")
             ),
         }
+
+        self.soundmanager = SoundManager()
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_main_theme.ogg", "main", "main", volume=0.5)
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_rifle_shot.ogg", "shoot", "sfx", volume=0.3)
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_hurt.ogg", "hurt", "sfx")
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_jump.ogg", "jump", "sfx")
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_landing.ogg", "land", "sfx")
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_step1.ogg", "step1", "sfx")
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_step2.ogg", "step2", "sfx")
+        self.soundmanager.add_sound(PROJECT_PATH / "assets/audio/snd_explosion_ground.ogg", "explosion_ground", "sfx")
 
     def __new__(cls):
         if cls.__instance is None:
@@ -89,6 +110,7 @@ class LevelData:
         self.objects_after_tiles: list[tuple[Surface, float, float]] = []
         self.enemies: dict[str, list[tuple[float, float]]] = defaultdict(list)
         self.player_pos = (0, 0)
+        self.grunt_spawner_nodes: list[Rect] = []
 
     def preload(self, mapdata: TilemapData):
         layer = cast(ParsedLayer, mapdata.get_layer("entities"))
@@ -101,6 +123,8 @@ class LevelData:
                     self.player_pos = (x, y)
                 elif props.get("name") == "grunt":
                     self.enemies["grunt"].append((x, y))
+                elif props.get("name") == "turret":
+                    self.enemies["turret"].append((x, y))
 
         self.objects_before_tiles = [
             (surface, x, y) for surface, x, y, _ in mapdata.get_object_surfaces("objects_bg", scaled=True)
@@ -108,6 +132,9 @@ class LevelData:
         self.objects_after_tiles = [
             (surface, x, y) for surface, x, y, _ in mapdata.get_object_surfaces("objects", scaled=True)
         ]
+
+        for node in mapdata.area_nodes:
+            self.grunt_spawner_nodes.append(node.rect)
 
     def __new__(cls):
         if cls.__instance is None:

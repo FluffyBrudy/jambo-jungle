@@ -1,3 +1,4 @@
+from random import random
 from typing import TYPE_CHECKING
 
 import pygame
@@ -8,17 +9,16 @@ from tilemap_parser import (
     ObjectCollisionManager,
     PhysicsWorld,
     TileLayerRenderer,
-    describe_character_collision,
     describe_sprite,
     get_shape_aabb,
     load_map,
 )
 
 from src.entities.base import Character
-from src.entities.enemies import Enemy, Grunt
+from src.entities.collision_resolver import resolve_collision
+from src.entities.enemies import Enemy, Grunt, WallTurret
 from src.entities.player import Player
 from src.loader import LevelData, SharedData
-from src.projectile import bullet
 from src.projectile.bullet import WeaponBullet
 from src.settings import PROJECT_PATH
 from src.types import Killable, WorldObject
@@ -32,11 +32,12 @@ class World:
         self.game = game
         self.screen = self.game.screen
 
+        self.grunt_spawn_queue: list[tuple[float, float]] = []
+
     def load_level(self, level: str):
         mapdata = load_map(PROJECT_PATH / "data" / "maps" / f"{level}.json", offset_x=0, offset_y=5)
         SharedData().preload(mapdata)
         LevelData().preload(mapdata)
-
         tileset_collision = SharedData().tileset_collision["default"]
         self.physics_world = PhysicsWorld.from_map(
             mapdata,
@@ -49,6 +50,7 @@ class World:
         self.tile_renderer = TileLayerRenderer(mapdata)
         self.objects_before_tiles = LevelData().objects_before_tiles
         self.objects_after_tiles = LevelData().objects_after_tiles
+        self.grunt_grunt_nodes = LevelData().grunt_spawner_nodes
 
         Character.collision_runner = self.collision_runner
         Enemy.solid_tile_at = self.check_solid_tile_at
@@ -64,9 +66,16 @@ class World:
         for k, v in LevelData().enemies.items():
             for pos in v:
                 if k == "grunt":
-                    grunt = Grunt(*pos, self.player, self.spawn_bullet)
+                    grunt = Grunt(*pos, self.player, self.spawn_bullet)  # pyright: ignore
                     self.object_container.append(grunt)
                     self.obj_collision_manager.add_object(grunt)
+                elif k == "turret":
+                    grunt = WallTurret(*pos, self.player, self.spawn_bullet)  # pyright: ignore
+                    self.object_container.append(grunt)
+                    self.obj_collision_manager.add_object(grunt)
+
+        self.soundmanager = SharedData().soundmanager
+        self.soundmanager.play("main", "main")
 
     def check_solid_tile_at(self, sprite: ICollidable, x: float, y: float, direction: float):
         l, _, r, b = get_shape_aabb(x, y, sprite.collision_shape)
@@ -74,10 +83,19 @@ class World:
         tile_x, tile_y = self.collision_runner.get_tile_at(probe_x, probe_y)
         return self.physics_world.cell_has_collision((tile_x, tile_y))
 
-    def spawn_bullet(self, x: float, y: float, btype: str, direction: int):
-        bullet = WeaponBullet(x, y, btype, direction)
+    def spawn_grunt_from_portal(self, pos: tuple[float, float]):
+        assert self.grunt_grunt_nodes.__len__() > 0
+        x, y = pos
+        min_node = min(self.grunt_grunt_nodes, key=lambda rect: (rect.x - x) ** 2 + (rect.y - y) ** 2)
+        grunt = Grunt(*min_node.topleft, self.player, self.spawn_bullet)  # pyright: ignore
+        self.object_container.append(grunt)
+        self.obj_collision_manager.add_object(grunt)
+
+    def spawn_bullet(self, x: float, y: float, btype: str, direction: int, speed: tuple[float, float] | None = None):
+        bullet = WeaponBullet(x, y, btype, direction, speed)
         self.object_container.append(bullet)
         self.obj_collision_manager.add_object(bullet)
+        self.soundmanager.play("shoot", "sfx")
 
     def update(self, dt: float):
         self.player.update(dt)
@@ -87,13 +105,17 @@ class World:
 
             obj.update(dt)
             if isinstance(obj, Killable) and obj.can_kill():
+                if isinstance(obj, Grunt):
+                    self.grunt_spawn_queue.append((obj.x, obj.y))
                 del self.object_container[i]
                 self.obj_collision_manager.remove_object(obj)
 
         for collision_result in self.obj_collision_manager.check_all_collisions():
-            other = collision_result.other(self.player)
-            if isinstance(other, WeaponBullet):
-                other.is_dead = True
+            resolve_collision(collision_result)
+
+        if len(self.grunt_spawn_queue) != 0:
+            if random() < 0.01:
+                self.spawn_grunt_from_portal(self.grunt_spawn_queue.pop())
 
     def render(self):
         cam_x, cam_y = self.camera.offset
@@ -107,7 +129,7 @@ class World:
         for surf, x, y in self.objects_after_tiles:
             self.screen.blit(surf, (x - cam_x, y - cam_y))
 
-        data = describe_sprite(self.player)
-        for s in data:
-            l, t, w, h = s["rect"]  # pyright: ignore
-            pygame.draw.rect(self.screen, "red", (l - cam_x, t - cam_y, w, h), 1)
+        # data = describe_sprite(self.player)
+        # for s in data:
+        #     l, t, w, h = s["rect"]  # pyright: ignore
+        #     pygame.draw.rect(self.screen, "red", (l - cam_x, t - cam_y, w, h), width=5)

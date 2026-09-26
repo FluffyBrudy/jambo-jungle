@@ -1,0 +1,118 @@
+{
+  "spritesheet_path": "../../assets/images/SpriteSheets/enemy/turret_spritesheet.png",
+  "tile_size": [18, 18],
+  "grid_offset": [0, 0],
+  "animations": {
+    "destroy": {
+      "name": "destroy",
+      "frames": [
+        {
+          "variant_id": 8,
+          "duration_ms": 100.0
+        },
+        {
+          "variant_id": 9,
+          "duration_ms": 100.0
+        },
+        {
+          "variant_id": 10,
+          "duration_ms": 100.0
+        },
+        {
+          "variant_id": 11,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": true,
+      "fps": 30.0
+    },
+    "east": {
+      "name": "east",
+      "frames": [
+        {
+          "variant_id": 4,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": false,
+      "fps": 60.0
+    },
+    "north_east": {
+      "name": "north_east",
+      "frames": [
+        {
+          "variant_id": 3,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": true,
+      "fps": 60.0
+    },
+    "north": {
+      "name": "north",
+      "frames": [
+        {
+          "variant_id": 2,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": true,
+      "fps": 60.0
+    },
+    "north_west": {
+      "name": "north_west",
+      "frames": [
+        {
+          "variant_id": 1,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": true,
+      "fps": 60.0
+    },
+    "west": {
+      "name": "west",
+      "frames": [
+        {
+          "variant_id": 0,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": true,
+      "fps": 60.0
+    },
+    "south_west": {
+      "name": "south_west",
+      "frames": [
+        {
+          "variant_id": 7,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": false,
+      "fps": 60.0
+    },
+    "south": {
+      "name": "south",
+      "frames": [
+        {
+          "variant_id": 6,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": false,
+      "fps": 60.0
+    },
+    "south_east": {
+      "name": "south_east",
+      "frames": [
+        {
+          "variant_id": 5,
+          "duration_ms": 100.0
+        }
+      ],
+      "loop": false,
+      "fps": 60.0
+    }
+  }
+}

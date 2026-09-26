@@ -1,5 +1,48 @@
 {
   "version": 2,
   "groups": [],
-  "nodes": []
+  "nodes": [
+    {
+      "node_id": "3eb8deeb-1e39-4ef6-8e72-51e84cab34f2",
+      "name": "spawn_area",
+      "node_type": "area",
+      "area": {
+        "x": 109,
+        "y": 99,
+        "w": 28,
+        "h": 24
+      },
+      "layer_name": "entities",
+      "properties": {},
+      "group": null
+    },
+    {
+      "node_id": "123a3be5-eda4-4f2e-889e-f10e41f149fa",
+      "name": "spawn_area",
+      "node_type": "area",
+      "area": {
+        "x": 719,
+        "y": 76,
+        "w": 23,
+        "h": 21
+      },
+      "layer_name": "entities",
+      "properties": {},
+      "group": null
+    },
+    {
+      "node_id": "168af749-942b-4cd7-89ee-233a3c7fbabf",
+      "name": "spawn_area",
+      "node_type": "area",
+      "area": {
+        "x": 430,
+        "y": 76,
+        "w": 22,
+        "h": 21
+      },
+      "layer_name": "entities",
+      "properties": {},
+      "group": null
+    }
+  ]
 }

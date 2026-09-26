@@ -162,6 +162,14 @@
     {
       "path": "../assets/images/SpriteSheets/enemy/grunt_portal.png",
       "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/enemy/grunt_portal_broke.png",
+      "folder": null
+    },
+    {
+      "path": "../assets/images/SpriteSheets/enemy/turret.png",
+      "folder": null
     }
   ]
 }
