@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from src.transition import IntroTransition
 from src.world import World
 
 
@@ -25,17 +26,24 @@ class Game:
         self.world = World(self)
         self.world.load_level("0")
 
+        self.intro = IntroTransition()
+
     def handle_event(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+            self.intro.handle_event(event)
 
     def update(self, dt: float) -> None:
+        if not self.intro.done:
+            self.intro.update(dt)
+            return
         self.world.update(dt)
 
     def render(self) -> None:
         self.screen.fill(self.BG_COLOR)
         self.world.render()
+        self.intro.render(self.screen)
         pygame.display.flip()
 
     def run(self) -> None:

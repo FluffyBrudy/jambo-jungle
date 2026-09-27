@@ -43,6 +43,20 @@
       "layer_name": "entities",
       "properties": {},
       "group": null
+    },
+    {
+      "node_id": "867a6dc7-3106-4cb2-ae0b-3733e71e82b3",
+      "name": "level_completed",
+      "node_type": "area",
+      "area": {
+        "x": 896,
+        "y": 0,
+        "w": 64,
+        "h": 147
+      },
+      "layer_name": "entities",
+      "properties": {},
+      "group": null
     }
   ]
 }

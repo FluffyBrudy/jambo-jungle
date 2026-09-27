@@ -142,6 +142,7 @@ class LevelData:
         self.player_pos = (0, 0)
         self.grunt_spawner_nodes: list[Rect] = []
         self.barrels: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        self.level_completed_node = Rect(0, 0, 0, 0)
 
     def preload(self, mapdata: TilemapData):
         layer = cast(ParsedLayer, mapdata.get_layer("entities"))
@@ -167,7 +168,10 @@ class LevelData:
         ]
 
         for node in mapdata.area_nodes:
-            self.grunt_spawner_nodes.append(node.rect)
+            if node.name == "level_completed":
+                self.level_completed_node = node.rect
+            elif node.name == "spawn_area":
+                self.grunt_spawner_nodes.append(node.rect)
 
     def __new__(cls):
         if cls.__instance is None:
