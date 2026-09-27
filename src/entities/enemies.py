@@ -3,11 +3,19 @@ from math import atan2, cos, cosh, degrees, pi, radians, sin
 from random import choice, randint, random
 from typing import Any, ClassVar
 
-from tilemap_parser import CharacterCollision, ICollidable, ICollidableSprite, SpriteAnimationSet, get_shape_aabb
+from pygame import Rect, Surface
+from tilemap_parser import (
+    CharacterCollision,
+    ICollidable,
+    ICollidableSprite,
+    RectangleShape,
+    SpriteAnimationSet,
+    get_shape_aabb,
+)
 
 from src.entities.base import Character
 from src.loader import SharedData
-from src.settings import BULLET_CD, DEFAULT_HIT_CD
+from src.settings import BULLET_CD, DEFAULT_HIT_CD, DIRECTION_LOOKUP, DIRECTION_VELOCITY, SPAWN_ANCHORS
 from src.types import Hitable, TSpawnBulletCb
 
 WALK_COUNT = 250
@@ -62,17 +70,21 @@ class Grunt(Enemy):
         self.hit_cd = 0
         self.hit_count = 0
 
+        self.is_dead = False
+
     def can_hit(self):
         return self.hit_cd == 0
 
     def can_kill(self):
         return self.current_state == "death" and self.animations[self.current_state].finished
 
-    def trigger_hit_effect(self):
+    def trigger_hit_effect(self, full: bool = False):
         self.hit_cd = DEFAULT_HIT_CD * 2
         self.flicker = True
-        self.hit_count += 1
-        if self.hit_count == GRUNT_MAX_HIT_COUNT:
+        self.hit_count += 1 if not full else (GRUNT_MAX_HIT_COUNT + 1)
+        if self.hit_count > GRUNT_MAX_HIT_COUNT and not self.is_dead:
+            self.flicker = False
+            self.is_dead = True
             SharedData().soundmanager.play("explosion_ground", "sfx")
 
     def handle_shooting(self, dt: float):
@@ -144,37 +156,6 @@ class Grunt(Enemy):
 
 
 class WallTurret(Enemy):
-    DIRECTION_LOOKUP: ClassVar[dict[float, str]] = {
-        0.0: "east",
-        45.0: "south_east",
-        90.0: "south",
-        135.0: "south_west",
-        180.0: "west",
-        -135.0: "north_west",
-        -90.0: "north",
-        -45.0: "north_east",
-    }
-    DIRECTION_VELOCITY: ClassVar[dict[float, tuple[float, float]]] = {
-        0.0: (700, 0),
-        45.0: (495, 495),
-        90.0: (0, 700),
-        135.0: (-495, 495),
-        180.0: (-700, 0),
-        -135.0: (-495, -495),
-        -90.0: (0, -700),
-        -45.0: (495, -495),
-    }
-    SPAWN_ANCHORS: ClassVar[dict[str, tuple[float, float]]] = {
-        "north": (0.5, 0.0),
-        "south": (0.5, 1.0),
-        "east": (1.0, 0.5),
-        "west": (0.0, 0.5),
-        "north_east": (1.0, 0.0),
-        "south_east": (1.0, 1.0),
-        "north_west": (0.0, 0.0),
-        "south_west": (0.0, 1.0),
-    }
-
     def __init__(
         self,
         x: float,
@@ -190,7 +171,7 @@ class WallTurret(Enemy):
         self.bullet_cd = 0
 
     @classmethod
-    def get_angle_deg(cls, angle_deg: float) -> float:
+    def get_quantized_ang(cls, angle_deg: float) -> float:
         normalized = (angle_deg + 180) % 360 - 180
 
         quantized_angle = round(normalized / 45.0) * 45.0
@@ -215,17 +196,18 @@ class WallTurret(Enemy):
         cx, cy = (l + r) * 0.5, (t + b) * 0.5
         wx, hy = r - l, b - t
 
-        fx, fy = self.SPAWN_ANCHORS[self.current_state]
+        fx, fy = SPAWN_ANCHORS[self.current_state]
         x = cx + (fx - 0.5) * wx
         y = cy + (fy - 0.5) * hy
-        self.spawn_bullet_cb(x, y, "enemy", 0, self.DIRECTION_VELOCITY[self.get_angle_deg(degrees(radian))])
+        speed = DIRECTION_VELOCITY[self.get_quantized_ang(degrees(radian))]
+        self.spawn_bullet_cb(x, y, "enemy", 0, speed)
 
     def get_state(self) -> str:
         dy = self.target.y - self.y
         dx = self.target.x - self.x
         ang_deg = degrees(atan2(dy, dx))
-        quantized_angle = self.get_angle_deg(ang_deg)
-        return self.DIRECTION_LOOKUP.get(quantized_angle, "east")
+        quantized_angle = self.get_quantized_ang(ang_deg)
+        return DIRECTION_LOOKUP.get(quantized_angle, "east")
 
     def can_hit(self):
         return False
@@ -236,3 +218,45 @@ class WallTurret(Enemy):
     def update(self, dt: float):
         super().update(dt)
         self.handle_shooting(dt)
+
+
+class GruntSpawnPortal:
+    def __init__(self, area: Rect, cleanup_cb: Callable) -> None:
+        collision_data = SharedData().character_collisions["grunt_portal"]
+        self.cleanup_cb = cleanup_cb
+        self.broken = False
+        self.surface = SharedData().images["grunt_portal"]
+        self.collision_shape = RectangleShape(*self.surface.size)
+        self.collision_layer = collision_data.collision_layer
+        self.collision_mask = collision_data.collision_mask
+        self.hit_count = 0
+        self.hit_cd = 0
+        self.death_after = 0
+
+        x, y = area.midbottom
+        l, _, r, b = get_shape_aabb(0, 0, self.collision_shape)
+        self.x = x - (r - l) * 0.5
+        self.y = y - b
+
+    def update(self, dt: float):
+        if self.hit_cd > 0.01:
+            self.hit_cd = max(self.hit_cd - dt, 0)
+        if self.death_after > 0:
+            self.death_after = max(self.death_after - dt, 0)
+
+    def can_hit(self):
+        return self.hit_cd == 0 and not self.broken
+
+    def trigger_hit_effect(self, full: bool = False):
+        self.hit_count += 1 if not full else (GRUNT_MAX_HIT_COUNT + 1)
+        if self.hit_count > GRUNT_MAX_HIT_COUNT * 5 and not self.broken:
+            self.broken = True
+            self.surface = SharedData().images["grunt_portal_broke"]
+            self.death_after = 5
+            self.cleanup_cb()
+
+    def can_kill(self):
+        return self.broken and self.death_after == 0
+
+    def render(self, surface: Surface, offset: tuple[float, float]):
+        surface.blit(self.surface, (self.x - offset[0], self.y - offset[1]))

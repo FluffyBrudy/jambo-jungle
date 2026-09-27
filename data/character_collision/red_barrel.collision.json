@@ -1,0 +1,17 @@
+{
+  "name": "red_barrel",
+  "shape": {
+    "type": "rectangle",
+    "width": 13.038675213675212,
+    "height": 16.152564102564092,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "properties": {
+    "collision_layer": 16,
+    "collision_mask": 31
+  },
+  "image_path": "../assets/images/SpriteSheets/props/red_barrel.png"
+}

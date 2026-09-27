@@ -3,7 +3,7 @@
     "tile_size": "8;8",
     "map_size": "120;20",
     "zoom_level": 0.9999999999999983,
-    "scroll": "548.0058651026379;38.79999999999936",
+    "scroll": "1668.005865102638;-121.20000000000061",
     "offset": "0;0",
     "render_scale": 3.0,
     "version": "1.1"
@@ -56,7 +56,10 @@
         "path": "../../assets/images/SpriteSheets/props/red_barrel.png",
         "type": "object",
         "tile_count": 2,
-        "firstgid": 1857
+        "firstgid": 1857,
+        "properties": {
+          "name": "red_barrel"
+        }
       },
       {
         "path": "../../assets/images/SpriteSheets/props/shelter.png",
@@ -12305,8 +12308,8 @@
         "objects": {
           "7": {
             "area": {
-              "x": 439,
-              "y": 37,
+              "x": 418,
+              "y": 38,
               "w": 50,
               "h": 59
             },
@@ -12387,18 +12390,6 @@
             "variant": 0,
             "properties": {}
           },
-          "20": {
-            "area": {
-              "x": 132,
-              "y": 63,
-              "w": 50,
-              "h": 59
-            },
-            "ttype": 16,
-            "tileset_type": "object",
-            "variant": 0,
-            "properties": {}
-          },
           "21": {
             "area": {
               "x": 186,
@@ -12443,42 +12434,6 @@
               "h": 59
             },
             "ttype": 17,
-            "tileset_type": "object",
-            "variant": 0,
-            "properties": {}
-          },
-          "25": {
-            "area": {
-              "x": 110,
-              "y": 100,
-              "w": 26,
-              "h": 22
-            },
-            "ttype": 34,
-            "tileset_type": "object",
-            "variant": 0,
-            "properties": {}
-          },
-          "26": {
-            "area": {
-              "x": 427,
-              "y": 76,
-              "w": 26,
-              "h": 22
-            },
-            "ttype": 34,
-            "tileset_type": "object",
-            "variant": 0,
-            "properties": {}
-          },
-          "27": {
-            "area": {
-              "x": 718,
-              "y": 76,
-              "w": 26,
-              "h": 22
-            },
-            "ttype": 34,
             "tileset_type": "object",
             "variant": 0,
             "properties": {}
@@ -20336,9 +20291,788 @@
             "tileset_type": "object",
             "variant": 0,
             "properties": {}
+          },
+          "12": {
+            "area": {
+              "x": 166,
+              "y": 106,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "13": {
+            "area": {
+              "x": 382,
+              "y": 82,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "14": {
+            "area": {
+              "x": 799,
+              "y": 82,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "15": {
+            "area": {
+              "x": 30,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "16": {
+            "area": {
+              "x": 145,
+              "y": 106,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "19": {
+            "area": {
+              "x": 85,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "20": {
+            "area": {
+              "x": 68,
+              "y": 104,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "21": {
+            "area": {
+              "x": 52,
+              "y": 104,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "22": {
+            "area": {
+              "x": 41,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "23": {
+            "area": {
+              "x": 18,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "24": {
+            "area": {
+              "x": 7,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "26": {
+            "area": {
+              "x": 92,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "28": {
+            "area": {
+              "x": 155,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "29": {
+            "area": {
+              "x": 76,
+              "y": 105,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "30": {
+            "area": {
+              "x": 83,
+              "y": 35,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "31": {
+            "area": {
+              "x": 70,
+              "y": 34,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "32": {
+            "area": {
+              "x": 58,
+              "y": 34,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "33": {
+            "area": {
+              "x": 45,
+              "y": 34,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "34": {
+            "area": {
+              "x": 32,
+              "y": 33,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "35": {
+            "area": {
+              "x": 32,
+              "y": 33,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0,
+            "properties": {}
+          },
+          "36": {
+            "area": {
+              "x": 60,
+              "y": 107,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "37": {
+            "area": {
+              "x": 175,
+              "y": 111,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "38": {
+            "area": {
+              "x": 188,
+              "y": 113,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "39": {
+            "area": {
+              "x": 189,
+              "y": 113,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "40": {
+            "area": {
+              "x": 204,
+              "y": 110,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "41": {
+            "area": {
+              "x": 200,
+              "y": 110,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "42": {
+            "area": {
+              "x": 215,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "43": {
+            "area": {
+              "x": 215,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "44": {
+            "area": {
+              "x": 221,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "45": {
+            "area": {
+              "x": 222,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "46": {
+            "area": {
+              "x": 223,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "47": {
+            "area": {
+              "x": 223,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "48": {
+            "area": {
+              "x": 225,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "49": {
+            "area": {
+              "x": 225,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "50": {
+            "area": {
+              "x": 232,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "51": {
+            "area": {
+              "x": 246,
+              "y": 108,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "52": {
+            "area": {
+              "x": 242,
+              "y": 109,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "53": {
+            "area": {
+              "x": 259,
+              "y": 110,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "54": {
+            "area": {
+              "x": 317,
+              "y": 86,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "55": {
+            "area": {
+              "x": 351,
+              "y": 86,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "56": {
+            "area": {
+              "x": 367,
+              "y": 87,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "57": {
+            "area": {
+              "x": 367,
+              "y": 87,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "58": {
+            "area": {
+              "x": 398,
+              "y": 89,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "59": {
+            "area": {
+              "x": 387,
+              "y": 89,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "60": {
+            "area": {
+              "x": 411,
+              "y": 89,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "61": {
+            "area": {
+              "x": 419,
+              "y": 89,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "62": {
+            "area": {
+              "x": 431,
+              "y": 88,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "63": {
+            "area": {
+              "x": 450,
+              "y": 88,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "64": {
+            "area": {
+              "x": 602,
+              "y": 84,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "65": {
+            "area": {
+              "x": 633,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "66": {
+            "area": {
+              "x": 646,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "67": {
+            "area": {
+              "x": 589,
+              "y": 84,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "68": {
+            "area": {
+              "x": 659,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "69": {
+            "area": {
+              "x": 576,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "70": {
+            "area": {
+              "x": 565,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "71": {
+            "area": {
+              "x": 558,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "72": {
+            "area": {
+              "x": 558,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "73": {
+            "area": {
+              "x": 552,
+              "y": 86,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "74": {
+            "area": {
+              "x": 667,
+              "y": 88,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "75": {
+            "area": {
+              "x": 674,
+              "y": 90,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "76": {
+            "area": {
+              "x": 679,
+              "y": 86,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "77": {
+            "area": {
+              "x": 680,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "78": {
+            "area": {
+              "x": 681,
+              "y": 85,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "79": {
+            "area": {
+              "x": 682,
+              "y": 84,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "80": {
+            "area": {
+              "x": 683,
+              "y": 83,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "81": {
+            "area": {
+              "x": 683,
+              "y": 83,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "82": {
+            "area": {
+              "x": 685,
+              "y": 82,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "83": {
+            "area": {
+              "x": 702,
+              "y": 84,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
+          },
+          "84": {
+            "area": {
+              "x": 694,
+              "y": 84,
+              "w": 13,
+              "h": 16
+            },
+            "ttype": 7,
+            "tileset_type": "object",
+            "variant": 0
           }
         },
-        "next_object_id": 12,
+        "next_object_id": 85,
         "properties": {}
       },
       {
@@ -20354,8 +21088,8 @@
         "objects": {
           "1": {
             "area": {
-              "x": 321,
-              "y": 38,
+              "x": 322,
+              "y": 45,
               "w": 50,
               "h": 59
             },

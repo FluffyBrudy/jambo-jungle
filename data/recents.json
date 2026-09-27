@@ -1,7 +1,9 @@
 [
   "/Users/upstem/Desktop/jambo-jungle/data/maps/0.json",
-  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/turret.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/fx/explosion_red.png",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/fx",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy",
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/turret.png",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/turret_spritesheet.png",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/turret_broke.png",
@@ -15,7 +17,5 @@
   "/Users/upstem/Desktop/jambo-jungle/data",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/jungle_paralax_bg2.png",
   "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background",
-  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/jungle_paralax_bg1.png",
-  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_death.png",
-  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/enemy/grunt_shoot.png"
+  "/Users/upstem/Desktop/jambo-jungle/assets/images/SpriteSheets/background/jungle_paralax_bg1.png"
 ]

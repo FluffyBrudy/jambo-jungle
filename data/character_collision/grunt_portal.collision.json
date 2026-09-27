@@ -1,0 +1,17 @@
+{
+  "name": "grunt_portal",
+  "shape": {
+    "type": "rectangle",
+    "width": 20.073394964939716,
+    "height": 20.291584040645585,
+    "offset": [
+      2.6400919668699623,
+      1.67713825619797
+    ]
+  },
+  "properties": {
+    "collision_layer": 4,
+    "collision_mask": 31
+  },
+  "image_path": "../assets/images/SpriteSheets/enemy/grunt_portal.png"
+}

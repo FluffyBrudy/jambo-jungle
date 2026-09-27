@@ -45,7 +45,7 @@ class Player(Character, ICollidableSprite):
     def can_hit(self):
         return self.hit_cd == 0
 
-    def trigger_hit_effect(self):
+    def trigger_hit_effect(self, full: bool = False):
         self.hit_cd = DEFAULT_HIT_CD * 3
         self.flicker = True
         self.vy = -400
@@ -63,9 +63,9 @@ class Player(Character, ICollidableSprite):
 
     def handle_key_input(self, dt: float):
         keys = pygame.key.get_pressed()
-        self.input_x = keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]
-        self.jump_pressed = keys[pygame.K_UP]
-        self.shoot_pressed = keys[pygame.K_SPACE]
+        self.input_x = (keys[pygame.K_RIGHT] or keys[pygame.K_d]) - (keys[pygame.K_LEFT] or keys[pygame.K_a])
+        self.jump_pressed = keys[pygame.K_UP] or keys[pygame.K_w]
+        self.shoot_pressed = pygame.mouse.get_pressed()[0] or keys[pygame.K_SPACE]
 
     def update(self, dt: float):
         self.handle_key_input(dt)
@@ -95,6 +95,9 @@ class Player(Character, ICollidableSprite):
             SharedData().soundmanager.play("jump", "sfx")
         elif just_fall:
             SharedData().soundmanager.play("land", "sfx")
+        if self.current_state == "run_shoot":
+            step = 1 + (pygame.time.get_ticks() % 2)
+            SharedData().soundmanager.play(f"step{step}", "sfx")
         super().update(dt)
 
     def render(self, surface: Surface, offset: tuple[float, float]):
