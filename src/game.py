@@ -38,6 +38,11 @@ class Game:
         if not self.intro.done:
             self.intro.update(dt)
             return
+        nxt = self.world.can_load_next()
+        if nxt is not None:
+            self.world.load_level(nxt)
+            self.intro.reset()
+            return
         self.world.update(dt)
 
     def render(self) -> None:

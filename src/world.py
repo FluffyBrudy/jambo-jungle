@@ -38,6 +38,7 @@ class World:
         self.grunt_spawn_queue: list[tuple[float, float]] = []
 
     def load_level(self, level: str):
+
         mapdata = load_map(PROJECT_PATH / "data" / "maps" / f"{level}.json", offset_x=0, offset_y=5)
         SharedData().preload(mapdata)
         LevelData().preload(mapdata)
@@ -55,6 +56,7 @@ class World:
         self.objects_before_tiles = LevelData().objects_before_tiles
         self.objects_after_tiles = LevelData().objects_after_tiles
         self.grunt_spawn_nodes = LevelData().grunt_spawner_nodes
+        self.level_complete_node = LevelData().level_completed_node
 
         Character.collision_runner = self.collision_runner
         Enemy.solid_tile_at = self.check_solid_tile_at
@@ -120,6 +122,12 @@ class World:
         self.object_container.append(bullet)
         self.obj_collision_manager.add_object(bullet)
         self.soundmanager.play("shoot", "sfx")
+
+    def can_load_next(self) -> str | None:
+        l, t, r, b = get_shape_aabb(self.player.x, self.player.y, self.player.collision_shape)
+        if self.level_complete_node.colliderect((l, t, r - l, b - t)):
+            return "0"
+        return None
 
     def update(self, dt: float):
         self.player.update(dt)

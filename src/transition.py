@@ -20,6 +20,13 @@ class IntroTransition:
     def skip(self) -> None:
         self.done = True
 
+    def reset(self) -> None:
+        self._iris.start(self.IRIS_DURATION)
+        self._flash.reset()
+        self._shake.reset()
+        self._pop_started = False
+        self.done = False
+
     def update(self, dt: float) -> None:
         if self.done:
             return
