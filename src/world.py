@@ -34,11 +34,13 @@ class World:
     def __init__(self, game: "Game") -> None:
         self.game = game
         self.screen = self.game.screen
-
+        self.levels = [str(i) for i in range(2)]
+        self.level_pointer = 0
         self.grunt_spawn_queue: list[tuple[float, float]] = []
 
-    def load_level(self, level: str):
-        self.grunt_spawn_queue.clear()
+    def load_level(self, level: str | None = None):
+        if level is None:
+            level = self.levels[self.level_pointer]
 
         mapdata = load_map(PROJECT_PATH / "data" / "maps" / f"{level}.json", offset_x=0, offset_y=5)
         SharedData().preload(mapdata)
@@ -50,6 +52,7 @@ class World:
             use_gids=True,
             exclude_layers={"entities"},
         )
+        self.grunt_spawn_queue.clear()
         self.collision_runner = CollisionRunner.from_world(self.physics_world)
         self._tile_polys = describe_tile_layer(self.physics_world.tile_map, world=self.physics_world)  # pyright: ignore
 
@@ -128,7 +131,10 @@ class World:
     def can_load_next(self) -> str | None:
         l, t, r, b = get_shape_aabb(self.player.x, self.player.y, self.player.collision_shape)
         if self.level_complete_node.colliderect((l, t, r - l, b - t)):
-            return "1"
+            self.level_pointer += 1
+            next_level = self.level_pointer % len(self.levels)
+            print(next_level)
+            return self.levels[next_level]
         return None
 
     def update(self, dt: float):
