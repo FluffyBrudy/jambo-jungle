@@ -12,14 +12,15 @@ class BarrelRed:
         explosion_animation_set = SharedData().state_animations["explosion"]
         self.surface = SharedData().images["barrel_red"]
         self.explosion_animation = AnimationPlayer(explosion_animation_set, "red")
-        self.x = x
-        self.y = y
         self.collision_shape = collision_data.shape
         self.collision_mask = collision_data.collision_mask
         self.collision_layer = collision_data.collision_layer
-
         self.hit_count = 0
         self.exploded = False
+
+        l, t, r, b = get_shape_aabb(0, 0, self.collision_shape)
+        self.x = x
+        self.y = y
 
     def update(self, dt: float):
         if self.exploded:

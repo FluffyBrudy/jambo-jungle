@@ -1,4 +1,5 @@
 import pygame
+from pygame.rect import Rect
 from pygame.surface import Surface
 from tilemap_parser import ICollidableSprite, get_shape_aabb
 
@@ -29,7 +30,11 @@ class Player(Character, ICollidableSprite):
         self.hit_cd = 0
         self.flicker = False
 
+        self.hanging = False
+
     def get_state(self) -> str:
+        if self.hanging:
+            return "hanging_move"
         if self.hit_cd > 0.01:
             return "hurt"
         if abs(self.vy) > 0.01:
@@ -54,7 +59,7 @@ class Player(Character, ICollidableSprite):
     def handle_shooting(self, dt: float):
         if self.bullet_cd > 0.01:
             self.bullet_cd = max(self.bullet_cd - dt, 0)
-        elif self.shoot_pressed:
+        elif self.shoot_pressed and not self.hanging:
             self.bullet_cd = BULLET_CD
             dir_x = -1 if self.flipped else 1
             l, t, r, b = get_shape_aabb(self.x, self.y, self.collision_shape)
@@ -86,9 +91,18 @@ class Player(Character, ICollidableSprite):
 
         was_on_ground = self.on_ground
         prev_vy = self.vy
-        self.collision_runner.move_platformer(
+        prev_y = self.y
+        collision_result = self.collision_runner.move_platformer(
             self, None, None, dt, input_x=self.input_x, jump_pressed=self.jump_pressed
         )
+        if self.hanging:
+            if collision_result.hit_wall_x:
+                self.vy = -400
+                self.hanging = False
+            else:
+                self.vy = 0
+                self.y = prev_y
+
         just_jumped = was_on_ground and not self.on_ground and self.vy < 0
         just_fall = not was_on_ground and self.on_ground and prev_vy > 0
         if just_jumped:
@@ -98,7 +112,8 @@ class Player(Character, ICollidableSprite):
         if self.current_state == "run_shoot":
             step = 1 + (pygame.time.get_ticks() % 2)
             SharedData().soundmanager.play(f"step{step}", "sfx")
-        super().update(dt)
+        sc = 0 if (self.hanging and self.vx == 0) else 1
+        super().update(dt * sc)
 
     def render(self, surface: Surface, offset: tuple[float, float]):
         return super().render(surface, offset)

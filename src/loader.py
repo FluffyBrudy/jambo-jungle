@@ -136,6 +136,7 @@ class LevelData:
             return
         self.__initialized = True
 
+    def preload(self, mapdata: TilemapData):
         self.objects_before_tiles: list[tuple[Surface, float, float]] = []
         self.objects_after_tiles: list[tuple[Surface, float, float]] = []
         self.enemies: dict[str, list[tuple[float, float]]] = defaultdict(list)
@@ -143,8 +144,8 @@ class LevelData:
         self.grunt_spawner_nodes: list[Rect] = []
         self.barrels: dict[str, list[tuple[float, float]]] = defaultdict(list)
         self.level_completed_node = Rect(0, 0, 0, 0)
+        self.hanging_nodes: list[Rect] = []
 
-    def preload(self, mapdata: TilemapData):
         layer = cast(ParsedLayer, mapdata.get_layer("entities"))
 
         entites = mapdata.get_object_surfaces("entities", scaled=True)
@@ -172,6 +173,8 @@ class LevelData:
                 self.level_completed_node = node.rect
             elif node.name == "spawn_area":
                 self.grunt_spawner_nodes.append(node.rect)
+            elif node.name == "hanging_area":
+                self.hanging_nodes.append(node.rect)
 
     def __new__(cls):
         if cls.__instance is None:

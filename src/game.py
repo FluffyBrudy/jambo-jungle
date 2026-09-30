@@ -23,8 +23,9 @@ class Game:
         pygame.display.set_caption(self.TITLE)
         self.clock = pygame.time.Clock()
 
+        level = "0" if len(sys.argv) < 2 else sys.argv[1]
         self.world = World(self)
-        self.world.load_level("0")
+        self.world.load_level(level or "0")
 
         self.intro = IntroTransition()
 

@@ -200,7 +200,7 @@ class WallTurret(Enemy):
         x = cx + (fx - 0.5) * wx
         y = cy + (fy - 0.5) * hy
         speed = DIRECTION_VELOCITY[self.get_quantized_ang(degrees(radian))]
-        self.spawn_bullet_cb(x, y, "enemy", 0, speed)
+        self.spawn_bullet_cb(x, y, "enemy", 0, (speed[0] * 0.5, speed[1] * 0.5))
 
     def get_state(self) -> str:
         dy = self.target.y - self.y

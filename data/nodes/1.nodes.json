@@ -3,26 +3,12 @@
   "groups": [],
   "nodes": [
     {
-      "node_id": "3eb8deeb-1e39-4ef6-8e72-51e84cab34f2",
-      "name": "spawn_area",
-      "node_type": "area",
-      "area": {
-        "x": 109,
-        "y": 99,
-        "w": 28,
-        "h": 24
-      },
-      "layer_name": "entities",
-      "properties": {},
-      "group": null
-    },
-    {
       "node_id": "123a3be5-eda4-4f2e-889e-f10e41f149fa",
       "name": "spawn_area",
       "node_type": "area",
       "area": {
-        "x": 719,
-        "y": 76,
+        "x": 492,
+        "y": 99,
         "w": 23,
         "h": 21
       },
@@ -35,10 +21,24 @@
       "name": "spawn_area",
       "node_type": "area",
       "area": {
-        "x": 430,
-        "y": 76,
+        "x": 443,
+        "y": 21,
         "w": 22,
         "h": 21
+      },
+      "layer_name": "entities",
+      "properties": {},
+      "group": null
+    },
+    {
+      "node_id": "ec444a95-868f-483b-987a-9caf09f4d103",
+      "name": "spawn_area",
+      "node_type": "area",
+      "area": {
+        "x": 754,
+        "y": 44,
+        "w": 41,
+        "h": 37
       },
       "layer_name": "entities",
       "properties": {},
@@ -50,11 +50,25 @@
       "node_type": "area",
       "area": {
         "x": 896,
-        "y": 0,
+        "y": -12,
         "w": 64,
-        "h": 147
+        "h": 46
       },
       "layer_name": "entities",
+      "properties": {},
+      "group": null
+    },
+    {
+      "node_id": "2b2d3a0a-5869-4429-8118-b8849ec5307d",
+      "name": "hanging_area",
+      "node_type": "area",
+      "area": {
+        "x": 230,
+        "y": 121,
+        "w": 90,
+        "h": 37
+      },
+      "layer_name": "tiles",
       "properties": {},
       "group": null
     }

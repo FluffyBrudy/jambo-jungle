@@ -38,6 +38,7 @@ class World:
         self.grunt_spawn_queue: list[tuple[float, float]] = []
 
     def load_level(self, level: str):
+        self.grunt_spawn_queue.clear()
 
         mapdata = load_map(PROJECT_PATH / "data" / "maps" / f"{level}.json", offset_x=0, offset_y=5)
         SharedData().preload(mapdata)
@@ -50,13 +51,14 @@ class World:
             exclude_layers={"entities"},
         )
         self.collision_runner = CollisionRunner.from_world(self.physics_world)
-        self._tile_polys = describe_tile_layer(self.physics_world.tile_map, world=self.physics_world)
+        self._tile_polys = describe_tile_layer(self.physics_world.tile_map, world=self.physics_world)  # pyright: ignore
 
         self.tile_renderer = TileLayerRenderer(mapdata)
         self.objects_before_tiles = LevelData().objects_before_tiles
         self.objects_after_tiles = LevelData().objects_after_tiles
         self.grunt_spawn_nodes = LevelData().grunt_spawner_nodes
         self.level_complete_node = LevelData().level_completed_node
+        print(LevelData().hanging_nodes)
 
         Character.collision_runner = self.collision_runner
         Enemy.solid_tile_at = self.check_solid_tile_at
@@ -126,10 +128,17 @@ class World:
     def can_load_next(self) -> str | None:
         l, t, r, b = get_shape_aabb(self.player.x, self.player.y, self.player.collision_shape)
         if self.level_complete_node.colliderect((l, t, r - l, b - t)):
-            return "0"
+            return "1"
         return None
 
     def update(self, dt: float):
+        pl, pt, pr, pb = get_shape_aabb(self.player.x, self.player.y, self.player.collision_shape)
+        for hanging_rect in LevelData().hanging_nodes:
+            if self.player.hanging:
+                break
+            if hanging_rect.colliderect((pl, pt - (pb - pt), pr - pl, pb - pt)):
+                self.player.hanging = True
+                break
         self.player.update(dt)
         self.camera.update(dt)
         for i in range(len(self.object_container) - 1, -1, -1):
